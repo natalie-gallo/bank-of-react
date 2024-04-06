@@ -13,6 +13,7 @@ import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Credits from './components/Credits';
 import Debits from './components/Debits';
+import axios from 'axios'; // needed for api calling
 
 class App extends Component {
   constructor() {  // Create and initialize state
@@ -26,6 +27,25 @@ class App extends Component {
         memberSince: '11/22/99',
       }
     };
+  }
+  
+  /*
+  Make API requests using the following endpoints:
+  Credits API endpoint -> https://johnnylaicode.github.io/api/credits.json
+  Debits API endpoint -> https://johnnylaicode.github.io/api/debits.json
+  */
+  componentDidMount(){
+
+  }
+
+  // update state based on user input of new credits
+  addCredit(credits){
+
+  }
+
+  // update state based on user input of new debits
+  addDebit(debits){
+
   }
 
   // Update state's currentUser (userName) after "Log In" button is clicked
@@ -48,7 +68,7 @@ class App extends Component {
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
-      <Router basename="/bank-of-react">
+      <Router basename="/bank-of-react-starter-code">
         <div>
           <Route exact path="/" render={HomeComponent}/>
           <Route exact path="/userProfile" render={UserProfileComponent}/>
