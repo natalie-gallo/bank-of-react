@@ -34,18 +34,64 @@ class App extends Component {
   Credits API endpoint -> https://johnnylaicode.github.io/api/credits.json
   Debits API endpoint -> https://johnnylaicode.github.io/api/debits.json
   */
-  componentDidMount(){
+  async componentDidMount(){
+    let linkToCreditAPI = 'https://johnnylaicode.github.io/api/credits.json';
+    let linkToDebitAPI = 'https://johnnylaicode.github.io/api/debits.json';
 
+    let totalCredits = 0;
+    let totalDebits = 0;
+    let balance = 0;
+
+    //Await for promise (completion) returned from API call
+    try {
+      let response = await axios.get(linkToCreditAPI);
+      console.log(response); // print response
+      // To get data object in the response, need to use "response.data"
+      this.setState({creditList: response.data});  // Store received data in state's "creditList" object
+      for (let credit of this.state.creditList){
+        totalCredits += credit.amount;
+      }
+    } catch (error) { // print errors at console when there is an error response
+      if (error.response) {
+        // The request was made, and the server responded with error message and status code.
+        console.log(error.response.data); // print error message
+        console.log(error.response.status); //print status code
+      }
+    }
+
+    //Await for promise (completion) returned from API call
+    try {
+      let response = await axios.get(linkToDebitAPI);
+      console.log(response); // print response
+      // To get data object in the response, need to use "response.data"
+      this.setState({debitList: response.data});  // Store received data in state's "debitList" object
+      for (let debit of this.state.debitList){
+        totalDebits += debit.amount;
+      }
+    } catch (error) { // print errors at console when there is an error response
+      if (error.response) {
+        // The request was made, and the server responded with error message and status code.
+        console.log(error.response.data); // print error message
+        console.log(error.response.status); //print status code
+      }
+    }
+
+    balance = totalCredits - totalDebits;
+    this.setState({accountBalance: balance.toFixed(2)});
   }
 
-  // update state based on user input of new credits
-  addCredit(credits){
-
+  // update state based on user input of new credit
+  addCredit(credit){
+    this.setState({creditList: [...this.state.creditList, credit]});
+    this.setState({accountBalance: this.state.accountBalance + credit.amount}); 
+    // ^credit.amount?? would assigning amt be implemented thru form submission?
   }
 
-  // update state based on user input of new debits
-  addDebit(debits){
-
+  // update state based on user input of new debit
+  addDebit(debit){
+    this.setState({debitList: [...this.state.debitList, debit]});
+    this.setState({accountBalance: this.state.accountBalance + debit.amount}); 
+    // ^debit.amount?? would assigning amt be implemented thru form submission?
   }
 
   // Update state's currentUser (userName) after "Log In" button is clicked
