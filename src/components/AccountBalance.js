@@ -6,6 +6,9 @@ The AccountBalance component displays account balance. It is included in other p
 import React, {Component} from 'react';
 
 class AccountBalance extends Component {
+  componentDidMount() {
+    document.body.style.backgroundColor = "gray"
+  }
   // Display account balance
   render() {
     return (

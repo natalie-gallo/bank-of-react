@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 const Debits = (props) => {
   // Create the list of Debit items
   let debitsView = () => {
+    
     const { debits } = props;
     return debits.map((debit) => {  // Extract "id", "amount", "description" and "date" properties of each debits JSON array element
       let date = debit.date.slice(0,10);
@@ -16,6 +17,7 @@ const Debits = (props) => {
     });
   }
   // Render the list of Debit items and a form to input new Debit item
+  
   return (
     <div>
       <h1>Debits</h1>
@@ -28,7 +30,7 @@ const Debits = (props) => {
         <button type="submit">Add Debit</button>
       </form>
       <br/>
-      <Link to="/">Return to Home</Link>
+      <button><Link to="/">Return to Home</Link></button>
     </div>
   );
 }
