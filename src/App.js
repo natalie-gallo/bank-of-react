@@ -34,7 +34,7 @@ class App extends Component {
   Credits API endpoint -> https://johnnylaicode.github.io/api/credits.json
   Debits API endpoint -> https://johnnylaicode.github.io/api/debits.json
   */
-  async componentDidMount(){
+  async componentDidMount() {
     let linkToCreditAPI = 'https://johnnylaicode.github.io/api/credits.json';
     let linkToDebitAPI = 'https://johnnylaicode.github.io/api/debits.json';
 
@@ -81,17 +81,16 @@ class App extends Component {
   }
 
   // update state based on user input of new credit
-  addCredit(credit){
+  addCredit = (credit) => {
     this.setState({creditList: [...this.state.creditList, credit]});
-    this.setState({accountBalance: this.state.accountBalance + credit.amount}); 
-    // ^credit.amount?? would assigning amt be implemented thru form submission?
+    this.setState({accountBalance: +this.state.accountBalance + +credit.amount}); 
+    //the + in front of both variables insures that we are doing addition and not concatenating strings
   }
 
   // update state based on user input of new debit
-  addDebit(debit){
+  addDebit = (debit) => {
     this.setState({debitList: [...this.state.debitList, debit]});
-    this.setState({accountBalance: this.state.accountBalance + debit.amount}); 
-    // ^debit.amount?? would assigning amt be implemented thru form submission?
+    this.setState({accountBalance: +this.state.accountBalance + +debit.amount}); 
   }
 
   // Update state's currentUser (userName) after "Log In" button is clicked
@@ -109,7 +108,7 @@ class App extends Component {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
     )
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
-    const CreditsComponent = () => (<Credits credits={this.state.creditList} />) 
+    const CreditsComponent = () => (<Credits credits={this.state.creditList} addCredit={this.addCredit} accountBalance={this.state.accountBalance} />) 
     const DebitsComponent = () => (<Debits debits={this.state.debitList} />) 
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
