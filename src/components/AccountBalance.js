@@ -7,6 +7,9 @@ import React, {Component} from 'react';
 
 class AccountBalance extends Component {
   // Display account balance
+  componentDidMount() {
+    document.body.style.backgroundColor = "gray"
+  }
   render() {
     return (
       <div>

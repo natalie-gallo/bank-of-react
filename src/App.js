@@ -35,6 +35,7 @@ class App extends Component {
   Debits API endpoint -> https://johnnylaicode.github.io/api/debits.json
   */
   async componentDidMount() {
+    document.body.style.backgroundColor = "gray"
     let linkToCreditAPI = 'https://johnnylaicode.github.io/api/credits.json';
     let linkToDebitAPI = 'https://johnnylaicode.github.io/api/debits.json';
 

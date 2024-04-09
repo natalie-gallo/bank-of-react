@@ -11,17 +11,21 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <img src="https://picsum.photos/200/200" alt="bank"/>
-
         <h1>Bank of React</h1>
 
-        <Link to="/userProfile">User Profile</Link>
+        <h1> </h1>
+
+        <img src="https://picsum.photos/200/200" alt="bank" width={300} border={2} />
+
+        <h1> </h1>
+
+        <button><Link to="/userProfile">User Profile</Link></button>
         <br/>
-        <Link to="/login">Login</Link>
+        <button><Link to="/login">Login</Link></button>
         <br/>
-        <Link to="/credits">Credits (to be implemented in the Assignment)</Link>
+        <button><Link to="/credits">Credits</Link></button>
         <br/>
-        <Link to="/debits">Debits (to be implemented in the Assignment)</Link>
+        <button><Link to="/debits">Debits</Link></button>
         <br/><br/>
         <AccountBalance accountBalance={this.props.accountBalance}/>
       </div>
